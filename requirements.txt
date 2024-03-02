@@ -9,3 +9,4 @@ langchainhub==0.1.14
 langserve==0.0.42
 python-dotenv==1.0.1
 faiss-cpu==1.8.0
+pgvector==0.2.5
