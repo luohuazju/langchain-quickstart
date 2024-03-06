@@ -67,3 +67,11 @@ index(
 _clear()
 all_docs = [doc1, doc2]
 index(all_docs, record_manager, store, cleanup="full", source_id_key="source")
+
+docs_with_score = store.similarity_search_with_score("doggy")
+
+for doc, score in docs_with_score:
+    print("-" * 80)
+    print("Score: ", score)
+    print(doc.page_content)
+    print("-" * 80)
