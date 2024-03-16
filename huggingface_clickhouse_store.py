@@ -21,7 +21,7 @@ settings = ClickhouseSettings(
                 port=settings.CLICKHOUSE_PORT,
                 username=settings.CLICKHOUSE_USERNAME,
                 password=settings.CLICKHOUSE_PASSWORD,
-                table="clickhouse_vector_search_lapro_zeppelin")
+                table="clickhouse_vector_search_lapro_python")
 
 docsearch = Clickhouse.from_documents(docs, embeddings, config=settings)
 
