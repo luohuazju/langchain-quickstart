@@ -70,3 +70,18 @@ rds.add_texts(new_document, new_metadata)
 
 results = rds.similarity_search("php", k=3)
 print(results[0].metadata)
+
+rds.write_schema("redis_schema.yaml")
+
+rds_tool = Redis.from_existing_index(
+    redis_url="redis+sentinel://" + settings.REDIS_HOST + ":" + settings.REDIS_PORT + "/" + settings.REDIS_CLUSTER +  "/" + settings.REDIS_DATABASE,
+    index_name="users",
+    embedding = embeddings,
+    schema="redis_schema.yaml",
+    password=settings.REDIS_PASSWORD,
+)
+
+results = rds_tool.similarity_search("foo", k=3)
+meta = results[1].metadata
+print("Key of the document in Redis: ", meta.pop("id"))
+print("Metadata of the document: ", meta)
